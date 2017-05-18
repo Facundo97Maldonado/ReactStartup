@@ -1,13 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-var SpotifyApi = require('spotify-web-api-node');
-
-var spotifyWebApi = new SpotifyApi({
-	clientId: 'fcecfc72172e4cd267473117a1cbd4d',
-	clientSecret: 'a6338157c9bb5ac9c71924cb2940e1a7',
-	redirectUri: 'http://www.example.com/callback'
-});
 
 class ArtistComponent extends React.Component {
 	constructor(){
@@ -23,7 +16,7 @@ class ArtistComponent extends React.Component {
 
 
 	searchArtist(){
-		spotifyWebApi.searchArtists(this.props.name, {limit: 10, offset: 0})
+		fetch('https://api.spotify.com/v1/artists/{id}')
 		.then((data) => {
 			this.state.artistList.push(data.body.artists.items)
 
