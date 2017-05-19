@@ -11,7 +11,7 @@ class IndexComponent extends React.Component {
 
 
 	searchArtists(){
-		let queryString = document.getElementById("inputSearch").value;
+		let queryString = document.getElementById("searchField").value;
 		fetch('https://api.spotify.com/v1/search?q=' + queryString + '&type=artist')
 		.then((data) => {
 			return data.json();
@@ -21,31 +21,31 @@ class IndexComponent extends React.Component {
 			this.setState({				
 				ArtistList: this.state.ArtistList
 			})
-			console.log(artist);
+			console.log(this.state.ArtistList[0].artists.items[0].name);
 		})
 	}
 
 	render () {
 		return (
 		  <div>
-		  	<h1>Search an Artist and see his albums</h1>
-		  	<input type="text" id="inputSearch" onChange={this.searchArtists}/>	
+		  	<h1>Search an Artist</h1>
+		  	<input type="text" id="searchField"/>
+		  	<button onClick={() => this.searchArtists()}>Search</button>
 		  	<ul>
 				{this.state.ArtistList.map((Artist, index) => {
-		  			<LittleArtist key={index} 
-		  						  name={Artist.artists.items[index].name} 
-		  						  image={Artist.artists.items[index].images[1].url}>
-		  			</LittleArtist>	
+		  			LittleArtist: () => 
+		  					<LittleArtist
+		  						  key={index} 
+		  						  name={Artist.artists.items[0].name} 
+		  						  image={Artist.artists.items[0].images[1].url}
+		  					/>
 		  		})}
 		  	</ul>
 		  </div>
 
 		 );
-		console.log(this.state.ArtistList);
 	}
 }
-
-export default IndexComponent
 
 ReactDOM.render(<IndexComponent />, document.getElementById('app'));
 
