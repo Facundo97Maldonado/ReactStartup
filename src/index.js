@@ -1,4 +1,4 @@
-import LittleArtist from './LittleArtist';
+import LittleArtist from 'LittleArtist';
 
 class IndexComponent extends React.Component {
 	constructor(){
@@ -11,35 +11,38 @@ class IndexComponent extends React.Component {
 
 
 	searchArtists(){
+		this.state.ArtistList + '';
 		let queryString = document.getElementById("searchField").value;
 		fetch('https://api.spotify.com/v1/search?q=' + queryString + '&type=artist')
 		.then((data) => {
 			return data.json();
 		})
 		.then((artist) => {
-			this.state.ArtistList.push(artist)
-			this.setState({				
-				ArtistList: this.state.ArtistList
-			})
-			console.log(this.state.ArtistList[0].artists.items[0].name);
-		})
+	        artist.artists.items.forEach((items) => {
+	        	this.state.ArtistList.push(items)
+	        })
+	        this.setState({
+	            ArtistList: this.state.ArtistList
+	        });
+    	})
 	}
 
 	render () {
 		return (
 		  <div>
 		  	<h1>Search an Artist</h1>
-		  	<input type="text" id="searchField"/>
+		  	<input type="search" id="searchField"/>
 		  	<button onClick={() => this.searchArtists()}>Search</button>
 		  	<ul>
-				{this.state.ArtistList.map((Artist, index) => {
-		  			LittleArtist: () => 
-		  					<LittleArtist
-		  						  key={index} 
-		  						  name={Artist.artists.items[0].name} 
-		  						  image={Artist.artists.items[0].images[1].url}
-		  					/>
-		  		})}
+				{this.state.ArtistList.map((Artist, index) => { 
+					return (
+						<LittleArtist key={index} 
+									  name={Artist.name}
+									  images={Artist.images.length > 0 ? Artist.images[1].url : null}
+						>
+						</LittleArtist>
+					)
+				})}
 		  	</ul>
 		  </div>
 

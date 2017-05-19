@@ -1,29 +1,18 @@
-import React from 'react';
-
-class LittleArtist extends React.Component{
+export default class LittleArtist extends React.Component{
 	constructor(props){
 		super(props);
 		this.state = {
 			name: '',
-			image: '',
+			images: '',
 		};
-	}
-
-	componentWillReceiveProps(props){
-		this.setState({
-			name: this.props.name,
-			image: this.props.image, 
-		});
 	}
 
 	render(){
 		return(
-			<div>
-				<h3>{this.state.name}</h3>
-				<p>{this.state.image}</p>
-			</div>
+				<li>
+					<p>{this.props.name}</p>
+					<img src={this.props.images}></img>
+				</li>
 		);
 	}
 }
-
-export default LittleArtist
