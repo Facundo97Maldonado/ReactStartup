@@ -1,48 +1,51 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import LittleArtist from './LittleArtist';
 
-
-class ArtistComponent extends React.Component {
+class IndexComponent extends React.Component {
 	constructor(){
 		super();
 		this.state = {
-			artistList: [],
-			showArtist: false,
-
+			ArtistList: [],
 		};
-		this.searchArtist = this.searchArtist.bind(this);
-		this.handleAlbumsShow = this.handleAlbumsShow.bind(this);
+		this.searchArtists = this.searchArtists.bind(this);
 	}
 
 
-	searchArtist(){
-		fetch('https://api.spotify.com/v1/artists/{id}')
+	searchArtists(){
+		let queryString = document.getElementById("inputSearch").value;
+		fetch('https://api.spotify.com/v1/search?q=' + queryString + '&type=artist')
 		.then((data) => {
-			this.state.artistList.push(data.body.artists.items)
-
-			this.setState({
-				artistList: this.state.artistList[0],
-				showArtist: false 
-			});
-		},(error) => {
-			console.error(error);
+			return data.json();
 		})
-	}
-
-	handleAlbumsShow(){
-		this.setState({
-			showAlbum: true
+		.then((artist) => {
+			this.state.ArtistList.push(artist)
+			this.setState({				
+				ArtistList: this.state.ArtistList
+			})
+			console.log(artist);
 		})
 	}
 
 	render () {
-	  return (
-	   	<div>
-	   		<h1>Search an Artist and display his Albums</h1>
-	   	</div>
-	  )
+		return (
+		  <div>
+		  	<h1>Search an Artist and see his albums</h1>
+		  	<input type="text" id="inputSearch" onChange={this.searchArtists}/>	
+		  	<ul>
+				{this.state.ArtistList.map((Artist, index) => {
+		  			<LittleArtist key={index} 
+		  						  name={Artist.artists.items[index].name} 
+		  						  image={Artist.artists.items[index].images[1].url}>
+		  			</LittleArtist>	
+		  		})}
+		  	</ul>
+		  </div>
+
+		 );
+		console.log(this.state.ArtistList);
 	}
 }
 
-ReactDOM.render(<ArtistComponent />, document.getElementById('app'));
+export default IndexComponent
+
+ReactDOM.render(<IndexComponent />, document.getElementById('app'));
 
