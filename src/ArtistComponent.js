@@ -1,4 +1,3 @@
-import LittleArtist from 'LittleArtist';
 import LittleAlbum from 'LittleAlbum';
 
 export default class ArtistComponent extends React.Component{
@@ -8,22 +7,22 @@ export default class ArtistComponent extends React.Component{
 			artistID: '',
 			albumsList: [],
 		};
+		console.log("ENTRO AL ARTIST COMPONENT");
 	}
 
 
 	getArtistAlbums(){
 		fetch("https://api.spotify.com/v1/artists/" + this.props.artistID + "/albums")
-		.then(data){
-			return data.json()
-		}.then(album){
+		.then((data) => {
+			return data.json();
+		}).then((album) => {
 			album.albums.items.forEach((items) => {
 	        	this.state.albumsList.push(items)
 	        })
 			this.setState({
 				albumsList: this.state.albumsList 
 			});
-
-		}
+		})
 	}	
 
 	render(){

@@ -1,5 +1,4 @@
 import ArtistComponent from 'ArtistComponent';
-import LittleAlbum from 'LittleAlbum';
 
 export default class LittleArtist extends React.Component{
 	constructor(props){
@@ -8,13 +7,18 @@ export default class LittleArtist extends React.Component{
 			name: '',
 			images: '',
 		};
+		this.showArtistComponent = this.showArtistComponent.bind(this);
+	}
+
+	showArtistComponent(){
+		<ArtistComponent artistID={this.props.artistID} />
 	}
 
 	render(){
 		return (
-				<li>
+				<li> 
 					<p>{this.props.name}</p>
-					<img src={this.props.images} onClick={() => <ArtistComponent artistID={this.props.artistID} />}></img>
+					<img src={this.props.images} onClick={this.showArtistComponent}/>
 				</li>
 		);
 	}
