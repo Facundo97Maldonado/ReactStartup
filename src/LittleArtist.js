@@ -1,3 +1,6 @@
+import ArtistComponent from 'ArtistComponent';
+import LittleAlbum from 'LittleAlbum';
+
 export default class LittleArtist extends React.Component{
 	constructor(props){
 		super(props);
@@ -8,10 +11,10 @@ export default class LittleArtist extends React.Component{
 	}
 
 	render(){
-		return(
+		return (
 				<li>
 					<p>{this.props.name}</p>
-					<img src={this.props.images}></img>
+					<img src={this.props.images} onClick={() => <ArtistComponent artistID={this.props.artistID} />}></img>
 				</li>
 		);
 	}

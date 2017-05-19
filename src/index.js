@@ -11,7 +11,6 @@ class IndexComponent extends React.Component {
 
 
 	searchArtists(){
-		this.state.ArtistList + '';
 		let queryString = document.getElementById("searchField").value;
 		fetch('https://api.spotify.com/v1/search?q=' + queryString + '&type=artist')
 		.then((data) => {
@@ -39,6 +38,7 @@ class IndexComponent extends React.Component {
 						<LittleArtist key={index} 
 									  name={Artist.name}
 									  images={Artist.images.length > 0 ? Artist.images[1].url : null}
+									  artistID={Artist.id}
 						>
 						</LittleArtist>
 					)
