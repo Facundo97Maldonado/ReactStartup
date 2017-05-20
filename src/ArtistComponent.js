@@ -15,10 +15,15 @@ export default class ArtistComponent extends React.Component{
 		.then((data) => {
 			return data.json();
 		}).then((album) => {
+			this.setState({
+ 				albumsList: []
+ 			});
 			album.items.forEach((items) => {
-	        	this.state.albumsList.push(items)
+	        	items.available_markets.forEach((market) =>{
+ 	        		market == 'US' ? this.state.albumsList.push(items)
+ 	        		: null
+ 	        	})
 	        })
-	        console.log(this.state.albumsList)
 			this.setState({
 				albumsList: this.state.albumsList 
 			});
@@ -28,7 +33,11 @@ export default class ArtistComponent extends React.Component{
 	render(){
 		return (
 			<div>
-			  	<h2>Albums of {this.props.name}</h2>
+				<h2>{this.state.albumsList.length > 0 ?
+					<div>Albums of {this.props.name}</div>
+					:null
+					}
+				</h2>
 				<ul>
 					{this.state.albumsList.map((Album, index) => { 
 						return (

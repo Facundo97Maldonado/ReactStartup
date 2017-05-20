@@ -17,6 +17,9 @@ class IndexComponent extends React.Component {
 			return data.json();
 		})
 		.then((artist) => {
+			this.setState({
+ 				ArtistList: []
+ 			});
 	        artist.artists.items.forEach((items) => {
 	        	this.state.ArtistList.push(items)
 	        })
@@ -29,8 +32,11 @@ class IndexComponent extends React.Component {
 	render () {
 		return (
 		  <div>
-		  	<h1>Search an Artist</h1>
-		  	<input type="search" id="searchField"/>
+		  	<nav>
+		  		Home
+		  	</nav>
+			<h1>Search an Artist</h1>
+			<input type="search" id="searchField"/>
 		  	<button onClick={() => this.searchArtists()}>Search</button>
 		  	<ul>
 				{this.state.ArtistList.map((Artist, index) => { 

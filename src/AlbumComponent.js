@@ -15,6 +15,9 @@ export default class AlbumComponent extends React.Component{
 		.then((data) => {
 			return data.json();
 		}).then((track) => {
+			this.setState({
+ 				tracksList: []
+ 			});
 			track.items.forEach((items) => {
 	        	this.state.tracksList.push(items)
 	        })
@@ -27,7 +30,11 @@ export default class AlbumComponent extends React.Component{
 	render(){
 		return (
 			<div>
-			  	<h2>Tracks of {this.props.name} album</h2>
+			  	<h2>{this.state.tracksList.length > 0 ?
+			  		<div>Tracks of {this.props.name}</div>
+			  		:null
+			  		}
+			  	</h2>
 				<ul>
 					{this.state.tracksList.map((Track, index) => { 
 						return (
