@@ -34,6 +34,7 @@ export default class AlbumComponent extends React.Component{
 							<LittleTrack  key={index} 
 										  name={Track.name}
 										  preview_url={Track.preview_url}
+										  spotifyUrl={Track.external_urls.spotify}
 							>
 							</LittleTrack>
 						)

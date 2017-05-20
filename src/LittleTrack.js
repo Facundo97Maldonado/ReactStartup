@@ -4,6 +4,7 @@ export default class LittleAlbum extends React.Component{
 		this.state = {
 			name: '',
 			preview_url: '',
+			spotifyUrl: '',
 		};
 	}
 
@@ -15,6 +16,7 @@ export default class LittleAlbum extends React.Component{
 						<audio controls> 
 							<source src={this.props.preview_url} />
 						</audio>
+						<a href={this.props.spotifyUrl}>See in spotify</a>
 					</li>
 				</div>
 			);
