@@ -7,19 +7,17 @@ export default class LittleArtist extends React.Component{
 			name: '',
 			images: '',
 		};
-		this.showArtistComponent = this.showArtistComponent.bind(this);
-	}
-
-	showArtistComponent(){
-		<ArtistComponent artistID={this.props.artistID} />
 	}
 
 	render(){
 		return (
+			<div>
 				<li> 
-					<p>{this.props.name}</p>
-					<img src={this.props.images} onClick={this.showArtistComponent}/>
+					<p onClick={() =>this.refs.child.getArtistAlbums()}>{this.props.name}</p>
+					<img src={this.props.images}/>
+					<ArtistComponent ref='child' name={this.props.name} artistID={this.props.artistID}/>
 				</li>
+			</div>
 		);
 	}
 }
