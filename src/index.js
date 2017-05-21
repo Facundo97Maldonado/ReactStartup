@@ -8,7 +8,7 @@ class IndexComponent extends React.Component {
 		};
 		this.searchArtists = this.searchArtists.bind(this);
 	}
-
+		
 
 	searchArtists(){
 		let queryString = document.getElementById("searchField").value;
@@ -46,12 +46,16 @@ class IndexComponent extends React.Component {
 				</ul>
 			  </nav>
 			  <div className="container">
-				<h1 className="searchTitle">Search an Artist</h1>
-				<input className="center"
-					type="text" type="search" id="searchField" placeholder="Artist Name"/>
-			  	<button onClick={() => this.searchArtists()}>
-			  		<i className="material-icons">search</i>
-			  	</button>
+			  	<div className="elementToFadeIn">
+					<h1 className="searchTitle">Search an Artist</h1>
+					<input className="center"
+						type="text" type="search" id="searchField" placeholder="Artist Name"/>
+				  	<button onClick={() => this.searchArtists()}>
+				  		<i className="material-icons">search</i>
+				  	</button>
+				</div>
+		  		<div className="loader" id="fadeOut">
+		  		</div>
 			  	<div className="container"> 
 				  	<ul>
 						{this.state.ArtistList.map((Artist, index) => { 

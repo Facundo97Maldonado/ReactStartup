@@ -131,3 +131,74 @@ button:hover {
 .fa-spotify:before {
   content: "\f1bc";
 }
+
+.loader {
+  font-size: 10px;
+  margin: 130px auto;
+  width: 6em;
+  height: 6em;
+  border-radius: 50%;
+  background: -moz-linear-gradient(left, #ffffff 10%, rgba(0, 180, 0, 200) 42%);
+  background: -webkit-linear-gradient(left, #ffffff 10%, rgba(0, 180, 0, 200) 42%);
+  background: -o-linear-gradient(left, #ffffff 10%, rgba(0, 180, 0, 200) 42%);
+  background: -ms-linear-gradient(left, #ffffff 10%, rgba(0, 180, 0, 200) 42%);
+  background: linear-gradient(to right, #ffffff 10%, rgba(0, 180, 0, 200) 42%);
+  position: relative;
+  -webkit-animation: load3 1.4s infinite linear;
+  animation: load3 1.4s infinite linear;
+}
+.loader:before {
+  width: 50%;
+  height: 50%;
+  border-radius: 100% 0 0 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: '';
+}
+.loader:after {
+  background: white;
+  width: 75%;
+  height: 75%;
+  border-radius: 100%;
+  content: '';
+  margin: 5px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+@-webkit-keyframes load3 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes load3 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+.elementToFadeIn {
+    -webkit-animation: fadeinout 4s;
+    animation: fadeinout 4s;
+}
+
+@-webkit-keyframes fadeinout {
+  0%,50% { opacity: 0; }
+}
+
+@keyframes fadeinout {
+  0%,50% { opacity: 0; }
+}
