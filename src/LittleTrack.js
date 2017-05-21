@@ -10,7 +10,6 @@ export default class LittleAlbum extends React.Component{
 
 	render(){
 		return	(
-				<div className="row">
 					<div className="col-12">
 						<p>Enjoy 30 seconds of {this.props.name} track.</p>
 						<audio controls> 
@@ -21,7 +20,6 @@ export default class LittleAlbum extends React.Component{
 							<span className="tooltiptext">See in spotify!</span>
 						</a>
 					</div>
-				</div>
 			);
 	}
 }

@@ -1,5 +1,14 @@
 /*index.js*/
 
+html{
+    position: relative;
+    min-height: 100%;
+}
+
+body{
+    margin-bottom: 100px;
+}
+
 nav .navbar{
     list-style-type: none;
     margin: 0;
@@ -66,22 +75,24 @@ button:hover {
 .footer {
 	width: 100%;
 	color: white;
-	position: relative;
+	position: absolute;
 	background-color: black;
 	text-align: center;
-	height: auto;
-	margin-bottom: -15px;
+    bottom: 0px;
+    margin-top: 50px;
 }
 
 /*Here it ends index.js */
 
 .col-12 {
+    font-family: Arial, Helvetica, sans-serif;
 	width: 100%;
 	margin-left: 40px;
 	margin-right: 40px;
 }
 
 .row{
+    font-family: Arial, Helvetica, sans-serif;
 	margin-left: -50px;
 	margin-right: 100px;
 	display: inline-block;
