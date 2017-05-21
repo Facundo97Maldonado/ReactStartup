@@ -35,8 +35,13 @@ class IndexComponent extends React.Component {
 			  <nav>
 			  	<ul className="navbar">
 			  		<li>
-			  			<a href="#" className="floatLeft"><i className="fa fa-home"></i> Home</a>
-						<a href="#" className="floatRight dropbtn">About</a>
+			  			<a href="#" className="floatLeft">
+			  				<i className="fa fa-home"></i> Home
+			  			</a>
+						<a href="#"  className="floatRight">About</a>
+						<a href="https://www.spotify.com">
+			  				<img src="./public/spotify.png" style={{height: 25}}/>
+			  			</a>
 					</li>
 				</ul>
 			  </nav>

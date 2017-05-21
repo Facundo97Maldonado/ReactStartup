@@ -27,7 +27,7 @@ li a, .floatLeft{
 }
 
 li a, .floatRight {
-	margin-right: 10%;
+	margin-right: 200px;
 	float: right;
 }
 
