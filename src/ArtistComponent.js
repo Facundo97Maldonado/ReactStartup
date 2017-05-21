@@ -38,18 +38,20 @@ export default class ArtistComponent extends React.Component{
 					:null
 					}
 				</h2>
-				<ul>
-					{this.state.albumsList.map((Album, index) => { 
-						return (
-							<LittleAlbum  key={index} 
-										  name={Album.name}
-										  images={Album.images.length > 0 ? Album.images[1].url : null}
-										  albumID={Album.id}
-							>
-							</LittleAlbum>
-						)
-					})}
-			  	</ul>
+				<div className="container">
+					<ul>
+						{this.state.albumsList.map((Album, index) => { 
+							return (
+								<LittleAlbum  key={index} 
+											  name={Album.name}
+											  images={Album.images.length > 0 ? Album.images[1].url : null}
+											  albumID={Album.id}
+								>
+								</LittleAlbum>
+							)
+						})}
+				  	</ul>
+				</div>
 		    </div>
 		)
 	}

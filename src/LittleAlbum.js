@@ -11,10 +11,12 @@ export default class LittleAlbum extends React.Component{
 
 	render(){
 		return (
-			<div>
-				<p onClick={() => this.refs.child.getAlbumTracks()}>{this.props.name}</p>
-				<img src={this.props.images} style={{width: 200, height: 200}}/> 
-				<AlbumComponent ref='child' name={this.props.name} albumID={this.props.albumID}/>
+			<div className="row">
+				<div className="col-12">
+					<p onClick={() => this.refs.child.getAlbumTracks()}>{this.props.name}</p>
+					<img src={this.props.images} style={{width: 200, height: 200}}/> 
+					<AlbumComponent ref='child' name={this.props.name} albumID={this.props.albumID}/>
+				</div>
 			</div>
 		);
 	}

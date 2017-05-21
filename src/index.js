@@ -47,22 +47,24 @@ class IndexComponent extends React.Component {
 			  	<button onClick={() => this.searchArtists()}>
 			  		<i className="material-icons">search</i>
 			  	</button>
-			  	<ul>
-					{this.state.ArtistList.map((Artist, index) => { 
-						return (
-							<LittleArtist key={index} 
-										  name={Artist.name}
-										  images={Artist.images.length > 0 ? Artist.images[1].url : null}
-										  artistID={Artist.id}
-							>
-							</LittleArtist>
-						)
-					})}
-			  	</ul>
+			  	<div className="container"> 
+				  	<ul>
+						{this.state.ArtistList.map((Artist, index) => { 
+							return (
+								<LittleArtist key={index} 
+											  name={Artist.name}
+											  images={Artist.images.length > 0 ? Artist.images[1].url : null}
+											  artistID={Artist.id}
+								>
+								</LittleArtist>
+							)
+						})}
+				  	</ul>
+				</div>
 			  </div>	
 			  <div className="footer">
-					<p className="footerLeft">UI Bootcamp - 2017 - &reg; All Rights Reserved</p>
-					<p className="footerRight">Mar del Plata - Buenos Aires - Argentina</p>
+					<p>UI Bootcamp - 2017 - &reg; All Rights Reserved -
+					Mar del Plata - Buenos Aires - Argentina</p>
 			  </div>
 		  </div>
 		 );

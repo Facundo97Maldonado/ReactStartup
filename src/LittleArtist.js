@@ -11,10 +11,12 @@ export default class LittleArtist extends React.Component{
 
 	render(){
 		return (
-			<div>
-				<p onClick={() => this.refs.child.getArtistAlbums()}>{this.props.name}</p>
-				<img src={this.props.images} style={{width: 250, height: 250}}/>
-				<ArtistComponent ref='child' name={this.props.name} artistID={this.props.artistID}/>
+			<div className="row">
+				<div className="col-12">
+					<p onClick={() => this.refs.child.getArtistAlbums()}>{this.props.name}</p>
+					<img src={this.props.images} style={{width: 250, height: 250}}/>
+					<ArtistComponent ref='child' name={this.props.name} artistID={this.props.artistID}/>
+				</div>
 			</div>
 		);
 	}

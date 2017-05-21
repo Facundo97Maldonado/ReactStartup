@@ -29,7 +29,7 @@ export default class AlbumComponent extends React.Component{
 
 	render(){
 		return (
-			<div>
+			<div className="container">
 			  	<h2>{this.state.tracksList.length > 0 ?
 			  		<div>Tracks of {this.props.name}</div>
 			  		:null
