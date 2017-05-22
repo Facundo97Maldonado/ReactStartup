@@ -4,7 +4,7 @@ setTimeout(function() {
    $("#fadeOut").fadeOut().empty();
  }, 1500);
 
-export default class IndexComponent extends React.Component {
+export default class ArtistComponent extends React.Component {
 	constructor(props){
 		super();
 		this.state = {
@@ -34,6 +34,12 @@ export default class IndexComponent extends React.Component {
 	    }else{
 	    	window.alert("Please complete Artist Field before search it")
 	    }
+	}
+
+	hideArtists(){
+		this.setState({
+			ArtistList: [], 
+		});
 	}
 
 	render () {
@@ -72,6 +78,7 @@ export default class IndexComponent extends React.Component {
 												  name={Artist.name}
 												  images={Artist.images.length > 0 ? Artist.images[1].url : "https://goo.gl/dzuBgt"}
 												  artistID={Artist.id}
+												  
 									>
 									</LittleArtist>
 								)
@@ -88,5 +95,5 @@ export default class IndexComponent extends React.Component {
 	}
 }
 
-ReactDOM.render(<IndexComponent />, document.getElementById('app'));
+ReactDOM.render(<ArtistComponent />, document.getElementById('app'));
 
