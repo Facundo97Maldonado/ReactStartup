@@ -25,7 +25,7 @@ export default class ArtistComponent extends React.Component{
  	        	})
 	        })
 			this.setState({
-				albumsList: this.state.albumsList 
+				albumsList: this.state.albumsList,
 			});
 		})
 	}	

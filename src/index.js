@@ -1,14 +1,13 @@
 import LittleArtist from 'LittleArtist';
 
-class IndexComponent extends React.Component {
-	constructor(){
+export default class IndexComponent extends React.Component {
+	constructor(props){
 		super();
 		this.state = {
 			ArtistList: [],
 		};
 		this.searchArtists = this.searchArtists.bind(this);
 	}
-		
 
 	searchArtists(){
 		let queryString = document.getElementById("searchField").value;
@@ -18,14 +17,15 @@ class IndexComponent extends React.Component {
 		})
 		.then((artist) => {
 			this.setState({
- 				ArtistList: []
+ 				ArtistList: [],
  			});
 	        artist.artists.items.forEach((items) => {
 	        	this.state.ArtistList.push(items)
 	        })
 	        this.setState({
 	            ArtistList: this.state.ArtistList
-	        });
+	        }); 
+	        /*<div className="loader" id="fadeOut"></div>*/
     	})
 	}
 
@@ -54,9 +54,7 @@ class IndexComponent extends React.Component {
 				  		<i className="material-icons">search</i>
 				  	</button>
 				</div>
-		  		<div className="loader" id="fadeOut">
-		  		</div>
-			  	<div className="container"> 
+				<div className="container"> 
 				  	<ul>
 						{this.state.ArtistList.map((Artist, index) => { 
 							return (

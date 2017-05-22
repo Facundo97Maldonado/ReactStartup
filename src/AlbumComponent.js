@@ -7,6 +7,8 @@ export default class AlbumComponent extends React.Component{
 			name: '',
 			albumID: '',
 			tracksList: [],
+			mode: 'AlbumComponent',
+			albumShow: this.props.albumShow,
 		};
 	}
 
@@ -22,7 +24,8 @@ export default class AlbumComponent extends React.Component{
 	        	this.state.tracksList.push(items)
 	        })
 			this.setState({
-				tracksList: this.state.tracksList 
+				tracksList: this.state.tracksList,
+				albumShow: false,
 			});
 		})
 	}	
@@ -30,12 +33,20 @@ export default class AlbumComponent extends React.Component{
 	render(){
 		return (
 			<div className="container">
-			  	<h2>{this.state.tracksList.length > 0 ?
-			  		<div>Tracks of {this.props.name}</div>
+			  	<h3>{this.state.tracksList.length > 0 ?
+			  		<div>Enjoy 30 seconds of each track of {this.props.name}
+				  		<table>
+					  		<tr>
+								<th className="tableHeader">Name</th>
+								<th className="tableHeader">Track</th>
+							</tr>
+						</table>
+					</div>
 			  		:null
 			  		}
-			  	</h2>
-				<ul>
+			  	</h3>
+
+				<ul className="tracksOnTable">
 					{this.state.tracksList.map((Track, index) => { 
 						return (
 							<LittleTrack  key={index} 
