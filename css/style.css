@@ -24,11 +24,22 @@ img:hover{
 }
 
 nav .navbar{
+    top: 0;
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
     background-color: #333;
+    -webkit-transition: all 700ms linear;
+    -moz-transition: all 700ms linear;
+    -ms-transition: all 700ms linear;
+    -o-transition: all 700ms linear;
+    transition: all 700ms linear;
+    transition-property: all;
+    width: 100%;
+    position: fixed;
+    box-shadow: rgba(0, 0, 0, 0.4) 1px 1px 10px 1px;
+    z-index: 9999;
 }
 
 li a {
@@ -44,14 +55,13 @@ li a:hover {
     color: #58D68D  ;
 }
 
-li a, .floatLeft{
+.floatLeft{
 	margin-left: 10%;
 	float: left;
 }
 
-li a, .floatRight {
-	margin-right: 200px;
-	float: right;
+.floatRight {
+	margin-right: 220px;
 }
 
 .container {
@@ -63,6 +73,7 @@ li a, .floatRight {
 
 .searchTitle{
 	font-family: Arial, Helvetica, sans-serif;
+  margin-top: 60px;
 }
 
 .center{

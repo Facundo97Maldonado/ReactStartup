@@ -33,12 +33,14 @@ export default class IndexComponent extends React.Component {
 		return (
 		  <div>
 			  <nav>
-			  	<ul className="navbar">
+			  	<ul className="navbar" id="navbar-home">
 			  		<li>
 			  			<a href="#" className="floatLeft">
 			  				<i className="fa fa-home"></i> Home
 			  			</a>
-						<a href="#"  className="floatRight">About</a>
+						<a href="#"  className="floatRight w3-right">
+							About
+						</a>
 						<a href="https://www.spotify.com">
 			  				<img src="./public/spotify.png" style={{height: 25}}/>
 			  			</a>
