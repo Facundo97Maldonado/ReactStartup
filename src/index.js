@@ -1,5 +1,9 @@
 import LittleArtist from 'LittleArtist';
 
+setTimeout(function() {
+   $("#fadeOut").fadeOut().empty();
+ }, 1500);
+
 export default class IndexComponent extends React.Component {
 	constructor(props){
 		super();
@@ -11,22 +15,25 @@ export default class IndexComponent extends React.Component {
 
 	searchArtists(){
 		let queryString = document.getElementById("searchField").value;
-		fetch('https://api.spotify.com/v1/search?q=' + queryString + '&type=artist')
-		.then((data) => {
-			return data.json();
-		})
-		.then((artist) => {
-			this.setState({
- 				ArtistList: [],
- 			});
-	        artist.artists.items.forEach((items) => {
-	        	this.state.ArtistList.push(items)
-	        })
-	        this.setState({
-	            ArtistList: this.state.ArtistList
-	        }); 
-	        /*<div className="loader" id="fadeOut"></div>*/
-    	})
+		if(queryString != ''){
+			fetch('https://api.spotify.com/v1/search?q=' + queryString + '&type=artist')
+			.then((data) => {
+				return data.json();
+			})
+			.then((artist) => {
+				this.setState({
+	 				ArtistList: [],
+	 			});
+		        artist.artists.items.forEach((items) => {
+		        	this.state.ArtistList.push(items)
+		        })
+		        this.setState({
+		            ArtistList: this.state.ArtistList
+		        }); 
+	    	})
+	    }else{
+	    	window.alert("Please complete Artist Field before search it")
+	    }
 	}
 
 	render () {
@@ -49,26 +56,27 @@ export default class IndexComponent extends React.Component {
 			  </nav>
 			  <div className="container">
 			  	<div className="elementToFadeIn">
-					<h1 className="searchTitle">Search an Artist</h1>
+					<h1 className="searchTitle"><strong>Search an Artist</strong></h1>
 					<input className="center"
 						type="text" type="search" id="searchField" placeholder="Artist Name"/>
 				  	<button onClick={() => this.searchArtists()}>
 				  		<i className="material-icons">search</i>
 				  	</button>
 				</div>
-				<div className="container"> 
-				  	<ul>
-						{this.state.ArtistList.map((Artist, index) => { 
-							return (
-								<LittleArtist key={index} 
-											  name={Artist.name}
-											  images={Artist.images.length > 0 ? Artist.images[1].url : null}
-											  artistID={Artist.id}
-								>
-								</LittleArtist>
-							)
-						})}
-				  	</ul>
+				<div className="loader" id="fadeOut"></div>
+				<div className="container">
+					  	<ul>
+							{this.state.ArtistList.map((Artist, index) => { 
+								return (
+									<LittleArtist key={index} 
+												  name={Artist.name}
+												  images={Artist.images.length > 0 ? Artist.images[1].url : "https://goo.gl/dzuBgt"}
+												  artistID={Artist.id}
+									>
+									</LittleArtist>
+								)
+							})}
+					  	</ul>
 				</div>
 			  </div>	
 			  <div className="footer">

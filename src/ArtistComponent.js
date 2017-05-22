@@ -44,7 +44,7 @@ export default class ArtistComponent extends React.Component{
 							return (
 								<LittleAlbum  key={index} 
 											  name={Album.name}
-											  images={Album.images.length > 0 ? Album.images[1].url : null}
+											  images={Album.images.length > 0 ? Album.images[1].url : "https://goo.gl/dzuBgt"}
 											  albumID={Album.id}
 								>
 								</LittleAlbum>

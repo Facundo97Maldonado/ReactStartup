@@ -17,12 +17,12 @@ export default class LittleAlbum extends React.Component{
 						</td>
 						<td>
 							<div className="tracks">
-								<audio controls> 
+								<audio className="preview" controls> 
 									<source src={this.props.preview_url} />
 								</audio>
 								<a href={this.props.spotifyUrl} className="tooltip">
 									<i className="fa fa-spotify fa-2x" aria-hidden="true" style={{width: 45, height: 45}}></i>
-									<span className="tooltiptext">See in spotify!</span>
+									<span className="tooltiptext"> See in spotify!</span>
 								</a>
 							</div>
 						</td>
