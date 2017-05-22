@@ -1,63 +1,58 @@
-import LittleTrack from 'LittleTrack';
+import LittleAlbum from 'LittleAlbum';
 
 export default class AlbumComponent extends React.Component{
 	constructor(props){
 		super(props);
 		this.state = {
 			name: '',
-			albumID: '',
-			tracksList: [],
-			mode: 'AlbumComponent',
-			albumShow: this.props.albumShow,
+			artistID: '',
+			albumsList: [],
 		};
 	}
 
-	getAlbumTracks(){
-		fetch("https://api.spotify.com/v1/albums/" + this.props.albumID + "/tracks?offset=0&limit=20")
+	getArtistAlbums(){
+		fetch("https://api.spotify.com/v1/artists/" + this.props.artistID + "/albums")
 		.then((data) => {
 			return data.json();
-		}).then((track) => {
+		}).then((album) => {
 			this.setState({
- 				tracksList: []
+ 				albumsList: []
  			});
-			track.items.forEach((items) => {
-	        	this.state.tracksList.push(items)
+			album.items.forEach((items) => {
+	        	items.available_markets.forEach((market) =>{
+ 	        		market == 'US' ? this.state.albumsList.push(items)
+ 	        		: null
+ 	        	})
 	        })
 			this.setState({
-				tracksList: this.state.tracksList,
-				albumShow: false,
+				albumsList: this.state.albumsList,
 			});
 		})
 	}	
 
 	render(){
 		return (
-			<div className="container">
-			  	<h3>{this.state.tracksList.length > 0 ?
-			  		<div>Enjoy 30 seconds of each track of {this.props.name}
-				  		<table>
-					  		<tr>
-								<th className="tableHeader">Name</th>
-								<th className="tableHeader">Track</th>
-							</tr>
-						</table>
-					</div>
-			  		:null
-			  		}
-			  	</h3>
-
-				<ul className="tracksOnTable">
-					{this.state.tracksList.map((Track, index) => { 
-						return (
-							<LittleTrack  key={index} 
-										  name={Track.name}
-										  preview_url={Track.preview_url}
-										  spotifyUrl={Track.external_urls.spotify}
-							>
-							</LittleTrack>
-						)
-					})}
-			  	</ul>
+			<div>
+				<h2>{this.state.albumsList.length > 0 ?
+					<div>Albums of {this.props.name}</div>
+					:null
+					}
+				</h2>
+				<div className="container">
+					<ul>
+						{this.state.albumsList.map((Album, index) => { 
+							return (
+								<LittleAlbum  
+											  key={index} 
+											  name={Album.name}
+											  images={Album.images.length > 0 ? Album.images[1].url : "https://goo.gl/dzuBgt"}
+											  albumID={Album.id}
+								>
+								</LittleAlbum>
+							)
+						})}
+				  	</ul>
+				</div>
 		    </div>
 		)
 	}

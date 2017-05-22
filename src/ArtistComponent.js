@@ -1,58 +1,99 @@
-import LittleAlbum from 'LittleAlbum';
+import LittleArtist from 'LittleArtist';
 
-export default class ArtistComponent extends React.Component{
+setTimeout(function() {
+   $("#fadeOut").fadeOut().empty();
+ }, 1500);
+
+export default class ArtistComponent extends React.Component {
 	constructor(props){
-		super(props);
+		super();
 		this.state = {
-			name: '',
-			artistID: '',
-			albumsList: [],
+			ArtistList: [],
 		};
+		this.searchArtists = this.searchArtists.bind(this);
 	}
 
-	getArtistAlbums(){
-		fetch("https://api.spotify.com/v1/artists/" + this.props.artistID + "/albums")
-		.then((data) => {
-			return data.json();
-		}).then((album) => {
-			this.setState({
- 				albumsList: []
- 			});
-			album.items.forEach((items) => {
-	        	items.available_markets.forEach((market) =>{
- 	        		market == 'US' ? this.state.albumsList.push(items)
- 	        		: null
- 	        	})
-	        })
-			this.setState({
-				albumsList: this.state.albumsList,
-			});
-		})
-	}	
+	searchArtists(){
+		let queryString = document.getElementById("searchField").value;
+		if(queryString != ''){
+			fetch('https://api.spotify.com/v1/search?q=' + queryString + '&type=artist')
+			.then((data) => {
+				return data.json();
+			})
+			.then((artist) => {
+				this.setState({
+	 				ArtistList: [],
+	 			});
+		        artist.artists.items.forEach((items) => {
+		        	this.state.ArtistList.push(items)
+		        })
+		        this.setState({
+		            ArtistList: this.state.ArtistList
+		        }); 
+	    	})
+	    }else{
+	    	window.alert("Please complete Artist Field before search it")
+	    }
+	}
 
-	render(){
+	hideArtists(){
+		this.setState({
+			ArtistList: [], 
+		});
+	}
+
+	render () {
 		return (
-			<div>
-				<h2>{this.state.albumsList.length > 0 ?
-					<div>Albums of {this.props.name}</div>
-					:null
-					}
-				</h2>
-				<div className="container">
-					<ul>
-						{this.state.albumsList.map((Album, index) => { 
-							return (
-								<LittleAlbum  key={index} 
-											  name={Album.name}
-											  images={Album.images.length > 0 ? Album.images[1].url : "https://goo.gl/dzuBgt"}
-											  albumID={Album.id}
-								>
-								</LittleAlbum>
-							)
-						})}
-				  	</ul>
+		  <div>
+			  <nav>
+			  	<ul className="navbar" id="navbar-home">
+			  		<li>
+			  			<a href="#" className="floatLeft">
+			  				<i className="fa fa-home"></i> Home
+			  			</a>
+						<a href="#"  className="floatRight w3-right">
+							About
+						</a>
+						<a href="https://www.spotify.com">
+			  				<img src="./public/spotify.png" style={{height: 25}}/>
+			  			</a>
+					</li>
+				</ul>
+			  </nav>
+			  <div className="container">
+			  	<div className="elementToFadeIn">
+					<h1 className="searchTitle"><strong>Search an Artist</strong></h1>
+					<input className="center"
+						type="text" type="search" id="searchField" placeholder="Artist Name"/>
+				  	<button onClick={() => this.searchArtists()}>
+				  		<i className="material-icons">search</i>
+				  	</button>
 				</div>
-		    </div>
-		)
+				<div className="loader" id="fadeOut"></div>
+				<div className="container">
+					  	<ul>
+							{this.state.ArtistList.map((Artist, index) => { 
+								return (
+									<LittleArtist key={index} 
+												  name={Artist.name}
+												  images={Artist.images.length > 0 ? Artist.images[1].url : "https://goo.gl/dzuBgt"}
+												  artistID={Artist.id}
+												  
+									>
+									</LittleArtist>
+								)
+							})}
+					  	</ul>
+				</div>
+			  </div>	
+			  <div className="footer">
+					<p>UI Bootcamp - 2017 - &reg; All Rights Reserved -
+					Mar del Plata - Buenos Aires - Argentina</p>
+			  </div>
+		  </div>
+		 );
 	}
 }
+
+ReactDOM.render(<ArtistComponent />, document.getElementById('app'));
+

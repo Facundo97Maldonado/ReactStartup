@@ -1,4 +1,4 @@
-export default class LittleAlbum extends React.Component{
+export default class LittleTrack extends React.Component{
 	constructor(props){
 		super();
 		this.state = {
